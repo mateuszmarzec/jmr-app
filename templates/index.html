@@ -1,0 +1,22 @@
+
+{% extends "base.html" %}
+{% load bootstrap4 %}
+
+{% block title %} Shortener {% endblock %}
+{% block content %}
+<div class="container" style="max-width: 600px; height: 100%">
+    <div class="container-fluid">
+        <h2 class="h1 text-center mb-3 font-weight-light">URL Shortener</h2>
+
+        <form method="post" class="form">
+          {% csrf_token %}
+          {% bootstrap_form form size='large' layout='inline' %}
+          {% bootstrap_button "Run" button_type="submit" size='medium' button_class='btn btn-lg btn-primary btn-block'%}
+        </form>
+        {% if shortcut %}
+        <h4 class="text-center mb-3">Your url's shortcut :</h4>
+            <a href="{{ shortcut }}"><p class="text-center mb-3">{{ host }}/{{ shortcut }}</p></a>
+        {% endif %}
+    </div>
+</div>
+{% endblock %}
